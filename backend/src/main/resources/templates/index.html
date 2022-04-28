@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="/css/bootstrap.css" rel="stylesheet">
+<link href="/css/login.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<body>
+<div class="container">
+    <h2 class="form-signin-heading" th:text="'Hello ' + ${auth.username}"></h2>
+    <h3 class="form-signin-heading" th:text="'With role ' + ${auth.role}"></h3>
+
+    <!--    ADMIN BUTTON -->
+    <button class="btn btn-lg btn-primary btn-block" id="adminButton" type="button">Admin endpoint</button>
+    <p id="outputAdmin"></p>
+    <br>
+
+    <!--    REVIEWER BUTTON -->
+    <button class="btn btn-lg btn-primary btn-block" id="reviewerButton" type="button">Reviewer endpoint</button>
+    <p id="outputReviewer"></p>
+    <br>
+
+    <!--    USER BUTTON -->
+    <button class="btn btn-lg btn-primary btn-block" id="userButton" type="button">User endpoint</button>
+    <p id="outputUser"></p>
+    <br>
+
+
+    <script type="text/javascript">
+function runGet(url, component){
+    $.get(url, function(result){
+        $(component).html(result);
+    }).fail(function(result) {
+    console.log(result.responseJSON)
+   $(component).html(JSON.stringify(result.responseJSON, null, "\t"));
+});
+}
+
+$("#adminButton").click(function() {
+  runGet("/payload/admin","#outputAdmin");
+});
+
+$("#reviewerButton").click(function() {
+  runGet("/payload/reviewer","#outputReviewer");
+});
+
+$("#userButton").click(function() {
+  runGet("/payload/user","#outputUser");
+});
+
+
+
+
+    </script>
+</div>
+</body>
+</html>
