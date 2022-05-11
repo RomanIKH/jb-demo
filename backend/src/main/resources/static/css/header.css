@@ -1,0 +1,19 @@
+
+.header {
+  padding: 30px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
+
+.header-button {
+  border: none;
+  display: inline-block;
+  text-align: center;
+  background: #1abc9c;
+}
+
+.header-button:hover {
+  background-color: #1a917a;
+}

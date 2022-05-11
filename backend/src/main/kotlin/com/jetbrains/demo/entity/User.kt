@@ -15,13 +15,13 @@ open class User {
     @Column(name = "id")
     open var id: Long? = null
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     open var username: String? = null
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     open var password: String? = null
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role")
-    open var role: Role? = null
+    @Column(name = "role", nullable = false)
+    open var role: Role = Role.USER
 }

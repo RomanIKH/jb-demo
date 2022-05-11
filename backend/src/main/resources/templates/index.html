@@ -2,6 +2,7 @@
 <html lang="en">
 <link href="/css/bootstrap.css" rel="stylesheet">
 <link href="/css/login.css" rel="stylesheet">
+<link href="/css/header.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <head>
@@ -9,8 +10,14 @@
     <title>Demo</title>
 </head>
 <body>
-<div class="container">
-    <h2 class="form-signin-heading" th:text="'Hello ' + ${auth.username}"></h2>
+<div class="header">
+    <button class="header-button" onclick='window.location.href = "/"'>Main Page</button>
+    <button class="header-button" onclick='window.location.href = "/add_user"'>Add User</button>
+    <button class="header-button" onclick='window.location.href = "/update_password"'>Change Password</button>
+    <button class="header-button" onclick='window.location.href = "/logout"'>logout</button>
+</div>
+<div class="container form-signin">
+    <h3 class="form-signin-heading" th:text="'Logged in as a ' + ${auth.username}"></h3>
     <h3 class="form-signin-heading" th:text="'With role ' + ${auth.role}"></h3>
 
     <!--    ADMIN BUTTON -->
@@ -28,33 +35,8 @@
     <p id="outputUser"></p>
     <br>
 
-
-    <script type="text/javascript">
-function runGet(url, component){
-    $.get(url, function(result){
-        $(component).html(result);
-    }).fail(function(result) {
-    console.log(result.responseJSON)
-   $(component).html(JSON.stringify(result.responseJSON, null, "\t"));
-});
-}
-
-$("#adminButton").click(function() {
-  runGet("/payload/admin","#outputAdmin");
-});
-
-$("#reviewerButton").click(function() {
-  runGet("/payload/reviewer","#outputReviewer");
-});
-
-$("#userButton").click(function() {
-  runGet("/payload/user","#outputUser");
-});
-
-
-
-
-    </script>
+    <!--fix ajax call for unauthorized request-->
+    <script src="/js/auth-endpoints.js"></script>
 </div>
 </body>
 </html>

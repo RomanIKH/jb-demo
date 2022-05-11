@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="/css/bootstrap.css" rel="stylesheet">
+<link href="/css/login.css" rel="stylesheet">
+<link href="/css/header.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<body>
+<div class="header">
+    <button class="header-button" onclick='window.location.href = "/"'>Main Page</button>
+    <button class="header-button" onclick='window.location.href = "/add_user"'>Add User</button>
+    <button class="header-button" onclick='window.location.href = "/update_password"'>Change Password</button>
+    <button class="header-button" onclick='window.location.href = "/logout"'>logout</button>
+</div>
+<div class="container">
+    <form class="form-signin" id="add" method="put" action="/users">
+        <h2 class="form-signin-heading">Add New User</h2>
+        <p>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required
+                   autofocus>
+        </p>
+        <p>
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+        </p>
+        <p>
+            <label for="role" class="sr-only">Role</label>
+            <select id="role" size="3" name="role">
+                <option value="ADMIN">Admin</option>
+                <option value="REVIEWER">Reviewer</option>
+                <option selected value="USER">User</option>
+            </select>
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
+    </form>
+    <p id="status"></p>
+
+    <!--fix ajax call for unauthorized request-->
+    <script src="/js/new-user.js"></script>
+
+</div>
+</body>
+</html>
